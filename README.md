@@ -1,1 +1,0 @@
-# Apl2_Operacoes-com-listas-encadeadas
