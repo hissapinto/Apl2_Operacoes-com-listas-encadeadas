@@ -40,7 +40,7 @@ public class Node {
 		return id;
 	}
 
-	public void setId(String ano, String semestre) throws Exception{
+	public void setId(String ano, String semestre) throws Exception{ //TODO: private pra pegar id e semestre
 		if (ano.length() == 1) {
 			this.id = ano + ".S";
 		}

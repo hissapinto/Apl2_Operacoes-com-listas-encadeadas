@@ -16,114 +16,163 @@ package apl2;
 
 public class DLinkedList {
 	
-	// TODO: Implementar a classe conforme o enunciado da atividade Apl2.
+	private Node head;
+	private Node tail;
+	private int count;
 
-
-// OPERAÇÃO:		Método construtor
-// COMPORTAMENTO:	Cria uma lista vazia.
+// Construtor
 	public DLinkedList() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		head = null;
+		tail = null;
+		count = 0;
 	}
 
-
-// OPERAÇÃO:		insert(<dados da pessoa>)
-// COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
-//					novo nó no início da lista.
-	public void insert(/*dados da pessoa*/) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+// Novo nó no início da lista
+	public void insert(String id, String nome, float nota) {
+		Node node = new Node(id, nome, nota, null, head);
+		if (isEmpty()){ //se vazia, o novo nó também é a cauda
+			tail = node;
+		}
+		head = node; //define novo nó como inicio
+		count ++;
 	}
 
-
-// OPERAÇÃO:		append(<dados da pessoa>)
-// COMPORTAMENTO:	Aloca um Node que contém os <dados da pessoa> e insere o
-//					novo nó no final da lista.
-	public void append(/*dados da pessoa*/) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+// Novo nó no final da lista
+	public void append(String id, String nome, float nota) {
+		Node node = new Node(id, nome, nota, tail, null);
+		if(isEmpty()){
+			head = node;
+		}
+		tail = node;
+		count ++;
 	}
 
-
-// OPERAÇÃO: 		removeHead()
-// COMPORTAMENTO:	Remove o nó do início da lista e retorna a referência do
-//					nó removido.
-//					Ou retorna null caso a lista esteja vazia.
+// Remove o nó do início da lista e retorna a referência do nó removido ou null se vazia
 	public Node removeHead() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if(isEmpty()){ //se vazia retorna null
+			return null;
+		}
+		Node pAux = head; //cria auxiliar apontando pra head
+		head = pAux.getProximo(); // head agora aponta pro próximo do auxiliar
+		head.setAnterior(null); //remove link da nova head com o nó removido
+		count--;
+
+		if(isEmpty()){ //se a lista agora ficou vazia, corrige tail para null
+			tail = null;
+		}
+
+		pAux.setProximo(null); //remove link de pAux com a lista
+		return pAux;
 	}
 
 
-// OPERAÇÃO:		removeTail()
-// COMPORTAMENTO:	Remove o nó do final da lista e retorna a referência do
-//					nó removido.
-//					Ou retorna null caso a lista esteja vazia.
+// Remove o nó do fim da lista e retorna a referência do nó removido ou null se vazia
 	public Node removeTail() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if(isEmpty()){ //se vazia retorna null
+			return null;
+		}
+		Node pAux = tail; //cria auxiliar apontando para tail
+		tail = pAux.getAnterior(); //tail agora é o nó anterior de pAux
+		tail.setProximo(null); //remove link da nova tail com o nó removido
+		count--;
+
+		if(isEmpty()){ //Se a lista agora ficou vazia, corrige head para null
+			head = null;
+		}
+
+		pAux.setAnterior(null); //remove link de pAux com a lista
+		return pAux;
 	}
 
-
-// OPERAÇÃO:		removeNode(<ID da pessoa>)
-// COMPORTAMENTO:	Remove o nó que contém o <ID da pessoa> da lista e retorna
-//					a referência do nó removido.
-//					Ou retorna null caso não exista um nó com <ID da pessoa>.
+// Remove o nó que contém o <ID da pessoa> da lista e retorna-o ou retorna null se não achar.
 	public Node removeNode(String id) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if(isEmpty()){
+			return null;
+		}
+
+		Node pAux = head;
+		while (pAux != null && !pAux.getId().equals(id)) {
+			pAux = pAux.getProximo();
+		}
+
+		if (pAux == null){ //Não achou o id na lista
+			return null;
+		}
+	
+		count--; //Se achou já diminui o contador
+
+		if (pAux == head){
+			return removeHead();
+		}
+
+		if (pAux == tail){
+			return removeTail();
+		}
+		
+		//Caso genérico: id no meio da lista
+		pAux.getAnterior().setProximo(pAux.getProximo()); //liga o nó anterior do aux ao proximo do aux
+		pAux.getProximo().setAnterior(pAux.getAnterior()); //liga o nó posterior do aux ao anterior do aux	
+		return pAux;
 	}
 
-
-// OPERAÇÃO:		getHead()
-// COMPORTAMENTO:	Retorna uma referência para o nó do início da lista.
-//					Ou retorna null caso a lista esteja vazia.
+	// Retorna head ou null se vazia
 	public Node getHead() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if(isEmpty()){
+			return null;
+		}
+		return head;
 	}
 
-
-// OPERAÇÃO:		getTail()
-// COMPORTAMENTO:	Retorna uma referência para o nó do final da lista.
-//					Ou retorna null caso a lista esteja vazia.
+// Retorna tail ou null se vazia
 	public Node getTail() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if(isEmpty()){
+			return null;
+		}
+		return tail;
 	}
 
 
-// OPERAÇÃO:		getNode(<ID da pessoa>)
-// COMPORTAMENTO:	Retorna uma referência para o nó que contém o <ID da pessoa>
-//					da lista.
-//					Ou retorna null caso não exista um nó com <ID da pessoa>.
+// Retorna uma referência para o nó que contém o <ID da pessoa> ou null caso não ache na lista
 	public Node getNode(String id) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if(isEmpty()){
+			return null;
+		}
+
+		Node pAux = head;
+		while (pAux != null && !pAux.getId().equals(id)) {
+			pAux = pAux.getProximo();
+		}
+
+		return pAux; //retorna o nó ou null caso percorra tudo
 	}
 
-
-// OPERAÇÃO:		count()
-// COMPORTAMENTO:	Retorna a quantidade de nós da lista.
+// Retorna a quantidade de nós da lista.
 	public int count() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		return count;
 	}
 
-
-// OPERAÇÃO:		isEmpty()
-// COMPORTAMENTO:	Retorna true se a lista estiver vazia ou false, caso contrário.
+// Retorna true se a lista estiver vazia ou false, caso contrário.
 	public boolean isEmpty() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		return head == null;
 	}
 
-
-// OPERAÇÃO:		clear()
-// COMPORTAMENTO:	Esvazia a lista, liberando a memória de todos os nós da lista.
+// Esvazia a lista, liberando a memória de todos os nós da lista.
 	public void clear() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		if(isEmpty()){
+			return;
+		}
+
+		Node pAux = head;
+		while (pAux != null) {
+			Node pProx = pAux.getProximo();
+			pAux.setAnterior(null);
+			pAux.setProximo(null);
+			pAux = pProx;
+		}
+
+		head = null;
+		tail = null;
+		count = 0;
 	}
 
 
