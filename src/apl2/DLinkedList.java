@@ -1,6 +1,6 @@
 // arquivo: src/apl2/DLinkedList.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA : XXXXXXXX | Kaique Paiva, RA: XXXXXXXX
 
 package apl2;
 
