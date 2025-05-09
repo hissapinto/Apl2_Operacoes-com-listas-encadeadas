@@ -11,16 +11,43 @@
 import apl2.DLinkedList;
 import apl2.LinkedListOriginal;
 import apl2.Node;
+import apl2.NodeOriginal;
 import apl2.Operation;
+import java.io.File;  // Import the File class (txt)
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.util.Scanner; // Import the Scanner class to read text files
 
 public class MainApl2 {
 	
 	public static void main(String[] args) {
 		LinkedListOriginal list = new LinkedListOriginal();
 
-		
 		// TODO: Carregar o conteúdo do arquivo "dados.txt" e adicionar cada linha como um nó na LinkedListOriginal list.
+		try {
+      		File dadosAnteriores = new File("dados.txt");
+      		Scanner scanner = new Scanner(dadosAnteriores);
+      		while (scanner.hasNextLine()) {
+        		String dados = scanner.nextLine();
+				String listaDados[] = dados.split("#");
+				System.out.println(listaDados[2]);
+				int id = Integer.parseInt(listaDados[0]);
+				int notaPt1 = Integer.parseInt(listaDados[2]);
+				int notaPt2 = Integer.parseInt(listaDados[3]);
+				/*if (Float.parseFloat(listaDados[2]) < 0 || Float.parseFloat(listaDados[3]) < 0){
+				nota = (float) 99.9;
+				}else{
+				nota = Float.parseFloat(listaDados[2]) + Float.parseFloat(listaDados[3])/10;
+				}*/
+				list.append(id, listaDados[1], notaPt1, notaPt2);
+				list.toString();
+      		}
+      	scanner.close();
+    	} catch (FileNotFoundException e) {
+      	System.out.println("Deu algo errado na hora de importar.");
+      	e.printStackTrace();
+    	}
 
+		//System.out.println(dados);
 		
 		System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
 		System.out.println(list);
