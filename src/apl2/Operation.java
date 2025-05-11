@@ -19,8 +19,33 @@ public class Operation {
 	 * @return Uma nova {@code DLinkedList} que contém o mapeamento da coleção de dados {@code original} para a nova estrutura usada pelo sistema de notas. 
 	 */
 	public static DLinkedList map(final LinkedListOriginal original) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		DLinkedList novaLista = new DLinkedList();
+		
+		NodeOriginal atual = original.getHead();
+		
+		while(atual != null) {
+			int idOriginal = atual.getId();
+			String nome = atual.getNome();
+			int parteInteira = atual.getInteiro();
+			int parteDecimal = atual.getDecimo();
+			
+			// o .format("%03d"... serve para quando vir um id do tipo '1', '7' e etc.
+			// ele converta em '001', '007'.
+			String novoId = "25.S3-" + String.format("%03d", idOriginal);
+			
+			float nota;
+			if(parteInteira == -1 || parteDecimal == -1) {
+				nota = 99.9f;
+			} else {
+				nota = parteInteira + (parteDecimal / 10.0f);
+			}
+			
+			novaLista.append(novoId, nome, nota);
+			
+			atual = atual.getNext();
+		}
+		
+		return novaLista;
 	}
 
 	/**
