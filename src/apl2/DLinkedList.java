@@ -39,7 +39,7 @@ public class DLinkedList {
 
 // Novo nó no final da lista
 	public void append(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, tail, null);
+		Node node = new Node(id, nome, nota, tail, head);
 		if(isEmpty()){
 			head = node;
 		}
@@ -62,6 +62,7 @@ public class DLinkedList {
 		}
 
 		pAux.setProximo(null); //remove link de pAux com a lista
+		tail.setProximo(head); //Atualiza o link da tail com o novo head
 		return pAux;
 	}
 
@@ -81,6 +82,7 @@ public class DLinkedList {
 		}
 
 		pAux.setAnterior(null); //remove link de pAux com a lista
+		tail.setProximo(head); //Atualiza o link do novo tail com o head
 		return pAux;
 	}
 
@@ -90,22 +92,22 @@ public class DLinkedList {
 			return null;
 		}
 
-		Node pAux = head;
-		while (pAux != null && !pAux.getId().equals(id)) {
+		Node pAux = head; //cria auxiliar apontando para head
+		while (pAux != null && !pAux.getId().equals(id)) { //laço enquanto nao chega ao fim e o id não é achado
 			pAux = pAux.getProximo();
 		}
 
-		if (pAux == null){ //Não achou o id na lista
+		if (pAux == null){ //Não achou o id na lista, retorna
 			return null;
 		}
 	
-		count--; //Se achou já diminui o contador
+		count--; //Se passou -> achou -> diminui o contador
 
-		if (pAux == head){
+		if (pAux == head){ //se na head
 			return removeHead();
 		}
 
-		if (pAux == tail){
+		if (pAux == tail){ //se na tail
 			return removeTail();
 		}
 		
