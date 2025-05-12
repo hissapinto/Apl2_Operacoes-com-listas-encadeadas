@@ -29,7 +29,7 @@ public class MainApl2 {
       		while (scanner.hasNextLine()) {
         		String dados = scanner.nextLine();
 				String listaDados[] = dados.split("#");
-				System.out.println(listaDados[2]);
+			//	System.out.println(listaDados[2]);
 				int id = Integer.parseInt(listaDados[0]);
 				int notaPt1 = Integer.parseInt(listaDados[2]);
 				int notaPt2 = Integer.parseInt(listaDados[3]);
@@ -46,9 +46,16 @@ public class MainApl2 {
       	System.out.println("Deu algo errado na hora de importar.");
       	e.printStackTrace();
     	}
+		System.out.println("Chegou aqui");
+		System.out.println(list);
+		System.out.println("Saiu");
+
+		DLinkedList novaLista = Operation.map(list);
+		System.out.println(novaLista);
+		System.out.println("Saiu2");
 
 		//System.out.println(dados);
-		
+		/* 
 		System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
 		System.out.println(list);
 		System.out.println("<<<<<<<<<< Dados originais (sistema legado) <<<<<<<<<<\n");
@@ -123,6 +130,7 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 		testList.clear();
 		System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
+		*/
 	}
 
 }

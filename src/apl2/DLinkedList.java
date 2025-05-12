@@ -31,9 +31,15 @@ public class DLinkedList {
 	public void insert(String id, String nome, float nota) {
 		Node node = new Node(id, nome, nota, null, head);
 		if (isEmpty()){ //se vazia, o novo nó também é a cauda
-			tail = node;
+			head = tail = node;
+			head.setProximo(node); //no -> no
+			head.setAnterior(node); //no <- no
 		}
-		head = node; //define novo nó como inicio
+		node.setProximo(head); //no -> head
+    	node.setAnterior(tail); //tail <- no
+        head.setAnterior(node); //no <- head
+        tail.setProximo(node); //tail -> no
+		head = node; //define novo nó como head
 		count ++;
 	}
 
@@ -41,8 +47,14 @@ public class DLinkedList {
 	public void append(String id, String nome, float nota) {
 		Node node = new Node(id, nome, nota, tail, head);
 		if(isEmpty()){
-			head = node;
+			head = tail = node;
+			node.setProximo(node); //no -> no
+        	node.setAnterior(node); //no <- no
 		}
+		node.setAnterior(tail); //tail <- no
+        node.setProximo(head); //no -> head
+        tail.setProximo(node); //tail -> no
+        head.setAnterior(node); //head -> no
 		tail = node;
 		count ++;
 	}
@@ -62,7 +74,8 @@ public class DLinkedList {
 		}
 
 		pAux.setProximo(null); //remove link de pAux com a lista
-		tail.setProximo(head); //Atualiza o link da tail com o novo head
+		tail.setProximo(head); //Atualiza link tail -> head
+		head.setAnterior(tail); //Atualiza link tail <- head
 		return pAux;
 	}
 
@@ -82,7 +95,8 @@ public class DLinkedList {
 		}
 
 		pAux.setAnterior(null); //remove link de pAux com a lista
-		tail.setProximo(head); //Atualiza o link do novo tail com o head
+		tail.setProximo(head); //Atualiza link tail -> head
+		head.setAnterior(tail); //Atualiza link tail <- head
 		return pAux;
 	}
 
@@ -183,8 +197,30 @@ public class DLinkedList {
 //					exemplo do método toString() da classe LinkedListOriginal).
 	@Override
 	public String toString() {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		StringBuilder sb = new StringBuilder();
+
+		if (head == null) {
+   			return "Lista vazia";
+		}
+		
+		sb.append("(" + count + ") \n");
+		
+		Node node = this.head;
+		int qtdAux = 0;
+		while (qtdAux < this.count && node != null) {
+			sb.append("(")
+			.append(node.getId())
+			.append(";")
+			.append(node.getNome())
+			.append(";")
+			.append(node.getNota())
+			.append(") -> \n");
+			node = node.getProximo();
+			qtdAux++;
+		}
+		sb.append("head");
+		
+		return sb.toString();
 	}
 
 }
