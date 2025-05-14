@@ -5,7 +5,7 @@
 //*************************** ATENÇÃO! ****************************
 // arquivo: src/MainApl2.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA: 10439611 | Kaique Paiva, RA: 10441787
 // TODO: Listar todas as referências consultadas para solucionar a atividade.
 
 import apl2.DLinkedList;
@@ -24,38 +24,25 @@ public class MainApl2 {
 
 		// TODO: Carregar o conteúdo do arquivo "dados.txt" e adicionar cada linha como um nó na LinkedListOriginal list.
 		try {
-      		File dadosAnteriores = new File("dados.txt");
-      		Scanner scanner = new Scanner(dadosAnteriores);
-      		while (scanner.hasNextLine()) {
+      		File dadosAnteriores = new File("dados.txt"); //inputa dados
+      		Scanner scanner = new Scanner(dadosAnteriores); 
+      		while (scanner.hasNextLine()) { //Enquanto não chega no final
         		String dados = scanner.nextLine();
-				String listaDados[] = dados.split("#");
-			//	System.out.println(listaDados[2]);
-				int id = Integer.parseInt(listaDados[0]);
-				int notaPt1 = Integer.parseInt(listaDados[2]);
-				int notaPt2 = Integer.parseInt(listaDados[3]);
-				/*if (Float.parseFloat(listaDados[2]) < 0 || Float.parseFloat(listaDados[3]) < 0){
-				nota = (float) 99.9;
-				}else{
-				nota = Float.parseFloat(listaDados[2]) + Float.parseFloat(listaDados[3])/10;
-				}*/
-				list.append(id, listaDados[1], notaPt1, notaPt2);
-				list.toString();
-      		}
+				String listaDados[] = dados.split("#"); //divide em #
+
+				int id = Integer.parseInt(listaDados[0]); //id
+				int notaPt1 = Integer.parseInt(listaDados[2]); //parte 1 nota
+				int notaPt2 = Integer.parseInt(listaDados[3]); //parte 2 da nota
+			
+				list.append(id, listaDados[1], notaPt1, notaPt2); //cria nó na lista
+				list.toString(); //printa lista
+	  		}
       	scanner.close();
-    	} catch (FileNotFoundException e) {
+    	} catch (FileNotFoundException e) { //Se erro
       	System.out.println("Deu algo errado na hora de importar.");
       	e.printStackTrace();
     	}
-		System.out.println("Chegou aqui");
-		System.out.println(list);
-		System.out.println("Saiu");
-
-		DLinkedList novaLista = Operation.map(list);
-		System.out.println(novaLista);
-		System.out.println("Saiu2");
-
-		//System.out.println(dados);
-		/* 
+		
 		System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
 		System.out.println(list);
 		System.out.println("<<<<<<<<<< Dados originais (sistema legado) <<<<<<<<<<\n");
@@ -64,7 +51,7 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
 		System.out.println(fixedList);
 		System.out.println("<<<<<<<<<< Dados convertidos para a nova representação dos dados <<<<<<<<<<\n");
-		
+		/* 
 		DLinkedList filteredGradedList = Operation.filterRemoveNonGraded(fixedList);
 		System.out.println(">>>>>>>>>> Lista filtrada (somente notas válidas) >>>>>>>>>>");
 		System.out.println(filteredGradedList);
@@ -84,12 +71,12 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> Lista com notas acima da média >>>>>>>>>>");
 		System.out.println(aboveAverageList);
 		System.out.println("<<<<<<<<<< Lista com notas acima da média <<<<<<<<<<\n");
-		
+		*/
 		String contents = Operation.mapToString(fixedList);
 		System.out.println(">>>>>>>>>> Lista mapeada para uma única string >>>>>>>>>>");
 		System.out.println(contents);
 		System.out.println("<<<<<<<<<< Lista mapeada para uma única string <<<<<<<<<<\n");
-		
+		/*
 		
 		// TODO: Salvar o conteúdo da String contents em um arquivo chamado "dados.csv".
 

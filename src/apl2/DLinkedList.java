@@ -1,6 +1,6 @@
 // arquivo: src/apl2/DLinkedList.java
 
-// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA : XXXXXXXX | Kaique Paiva, RA: XXXXXXXX
+// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA: 10439611 | Kaique Paiva, RA: 10441787
 
 package apl2;
 
@@ -191,10 +191,7 @@ public class DLinkedList {
 		count = 0;
 	}
 
-
-// OPERAÇÃO:		toString()
-// COMPORTAMENTO:	Retorna uma string com o conteúdo da lista (caso queira, use o
-//					exemplo do método toString() da classe LinkedListOriginal).
+// Retorna uma string com o conteúdo da lista
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

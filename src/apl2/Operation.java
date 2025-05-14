@@ -3,7 +3,7 @@
 //*************************** ATENÇÃO! *****************************
 // arquivo: src/apl2/Operation.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA: 10439611 | Kaique Paiva, RA: 10441787
 
 package apl2;
 
@@ -117,8 +117,29 @@ public class Operation {
 	 * @return {@code String} com a coleção de dados separada por ponto-e-vírgula (dados de cada pessoa) e quebras de linha (cada pessoa).
 	 */
 	public static String mapToString(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		StringBuilder sb = new StringBuilder();
+
+		if (data.getHead() == null) {
+   			return "Lista vazia";
+		}
+		
+		sb.append("(" + data.count() + ") \n");
+		
+		Node node = data.getHead();
+		int qtdAux = 0;
+		while (qtdAux < data.count() && node != null) {
+			sb.append(node.getId())
+			.append(";")
+			.append(node.getNome())
+			.append(";")
+			.append(node.getNota())
+			.append("\n");
+			node = node.getProximo();
+			qtdAux++;
+		}
+		//sb.append("head");
+		
+		return sb.toString();
 	}
 
 }
