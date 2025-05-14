@@ -61,17 +61,20 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> Lista filtrada (somente 'ausência de nota') >>>>>>>>>>");
 		System.out.println(filteredNonGradedList);
 		System.out.println("<<<<<<<<<< Lista filtrada (somente 'ausência de nota') <<<<<<<<<<\n");
-
-		float average = Operation.reduce(filteredGradedList);
+		*/
+		// filteredGradedList -> isso estava no lugar da fixedList, mas tava dando erro
+		// E como eu vi que vc tava usando essa fixedList para testar eu mudei.
+		float average = Operation.reduce(fixedList);
 		System.out.println(">>>>>>>>>> Média das notas válidas >>>>>>>>>>");
 		System.out.println(average);
 		System.out.println("<<<<<<<<<< Média das notas válidas <<<<<<<<<<\n");
-		
+		/*
 		DLinkedList aboveAverageList = Operation.filterRemoveBelowAverage(filteredGradedList, average);
 		System.out.println(">>>>>>>>>> Lista com notas acima da média >>>>>>>>>>");
 		System.out.println(aboveAverageList);
 		System.out.println("<<<<<<<<<< Lista com notas acima da média <<<<<<<<<<\n");
 		*/
+		/*
 		String contents = Operation.mapToString(fixedList);
 		System.out.println(">>>>>>>>>> Lista mapeada para uma única string >>>>>>>>>>");
 		System.out.println(contents);

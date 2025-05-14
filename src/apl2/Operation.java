@@ -112,9 +112,27 @@ public class Operation {
 	 * @param data Base de dados filtrada com a operação {@code filterRemoveNonGraded()}.
 	 * @return Média das notas ({@code float}) contidas na coleção de dados ({@code data}).
 	 */
-	public static float reduce(final DLinkedList data) {
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+	public static float reduce(final DLinkedList data) {		
+		float total = 0.0f;
+		int contador = 0;
+		
+		Node node = data.getHead();
+		
+		if(node != null) {
+			do {
+				if(node.getNota() != 99.9f) {
+					total += node.getNota();
+					contador++;					
+				}
+				node = node.getProximo();
+			} while(node != data.getHead());			
+		}
+		
+		if(contador == 0) {
+			return 0.0f;
+		}
+		
+		return total / contador;
 	}
 
 	//Metodo toString direto da dlinkedlist
