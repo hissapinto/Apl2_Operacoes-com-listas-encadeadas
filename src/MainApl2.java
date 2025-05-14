@@ -39,8 +39,8 @@ public class MainApl2 {
 	  		}
       	scanner.close();
     	} catch (FileNotFoundException e) { //Se erro
-      	System.out.println("Deu algo errado na hora de importar.");
-      	e.printStackTrace();
+    		System.out.println("Deu algo errado na hora de importar.");
+    		e.printStackTrace();
     	}
 		
 		System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
@@ -51,20 +51,18 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> Dados convertidos para a nova representação dos dados >>>>>>>>>>");
 		System.out.println(fixedList);
 		System.out.println("<<<<<<<<<< Dados convertidos para a nova representação dos dados <<<<<<<<<<\n");
-		/* 
+		
 		DLinkedList filteredGradedList = Operation.filterRemoveNonGraded(fixedList);
 		System.out.println(">>>>>>>>>> Lista filtrada (somente notas válidas) >>>>>>>>>>");
 		System.out.println(filteredGradedList);
 		System.out.println("<<<<<<<<<< Lista filtrada (somente notas válidas) <<<<<<<<<<\n");
-		
+		/*
 		DLinkedList filteredNonGradedList = Operation.filterRemoveGraded(fixedList);
 		System.out.println(">>>>>>>>>> Lista filtrada (somente 'ausência de nota') >>>>>>>>>>");
 		System.out.println(filteredNonGradedList);
 		System.out.println("<<<<<<<<<< Lista filtrada (somente 'ausência de nota') <<<<<<<<<<\n");
 		*/
-		// filteredGradedList -> isso estava no lugar da fixedList, mas tava dando erro
-		// E como eu vi que vc tava usando essa fixedList para testar eu mudei.
-		float average = Operation.reduce(fixedList);
+		float average = Operation.reduce(filteredGradedList);
 		System.out.println(">>>>>>>>>> Média das notas válidas >>>>>>>>>>");
 		System.out.println(average);
 		System.out.println("<<<<<<<<<< Média das notas válidas <<<<<<<<<<\n");

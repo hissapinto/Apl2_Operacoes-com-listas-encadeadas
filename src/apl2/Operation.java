@@ -59,18 +59,20 @@ public class Operation {
 	 * @param data Base de dados mapeada para o formato {@code DLinkedList} (via operação {@code map()}).
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas válidas.
 	 */
-	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) throws Exception {
-		DLinkedList listaAux = new DLinkedList();
-
-		if (data.isEmpty()){
-			throw new Exception("Lista vazia");
-		}
+	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) {
+		DLinkedList novaLista = new DLinkedList();
 		
-		Node aux = data.getHead();
+		Node node = data.getHead();
 
-
-		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		do {
+			if(node.getNota() != 99.9f) {
+				novaLista.append(node.getId(), node.getNome(), node.getNota());
+			}
+			
+			node = node.getProximo();
+		} while(node != data.getHead());
+		
+		return novaLista;
 	}
 
 	/**
@@ -120,10 +122,9 @@ public class Operation {
 		
 		if(node != null) {
 			do {
-				if(node.getNota() != 99.9f) {
-					total += node.getNota();
-					contador++;					
-				}
+				total += node.getNota();
+				contador++;					
+				
 				node = node.getProximo();
 			} while(node != data.getHead());			
 		}
