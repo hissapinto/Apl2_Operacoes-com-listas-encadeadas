@@ -7,6 +7,8 @@
 
 package apl2;
 
+import java.io.EOFException;
+
 public class Operation {
 
 	/**
@@ -57,7 +59,16 @@ public class Operation {
 	 * @param data Base de dados mapeada para o formato {@code DLinkedList} (via operação {@code map()}).
 	 * @return Uma nova {@code DLinkedList} que contém a coleção de dados ({@code data}) filtrada com nós que possuem apenas pessoas com notas válidas.
 	 */
-	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) {
+	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) throws Exception {
+		DLinkedList listaAux = new DLinkedList();
+
+		if (data.isEmpty()){
+			throw new Exception("Lista vazia");
+		}
+		
+		Node aux = data.getHead();
+
+
 		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
 		throw new UnsupportedOperationException("Método ainda não implementado.");
 	}
@@ -106,17 +117,8 @@ public class Operation {
 		throw new UnsupportedOperationException("Método ainda não implementado.");
 	}
 
-	/**
-	 * <p>Recebe como parâmetro uma lista duplamente encadeada do tipo {@code DLinkedList}, sendo que os nós da lista estão
-	 * populados com o resultado da operação {@code map()}.</p>
-	 * <p>A operação {@code mapToString()} deve mapear todos os nós da coleção de dados passada como parâmetro para uma única
-	 * {@code String}, sendo que cada dado de uma pessoa é separado por ponto-e-vírgula (;) e cada pessoa é separada por uma
-	 * quebra de linha.</p>
-	 * 
-	 * @param data Base de dados mapeada para o formato {@code DLinkedList} (via operação {@code map()}).
-	 * @return {@code String} com a coleção de dados separada por ponto-e-vírgula (dados de cada pessoa) e quebras de linha (cada pessoa).
-	 */
-	public static String mapToString(final DLinkedList data) {
+	//Metodo toString direto da dlinkedlist
+	public static String mapToString(final DLinkedList data) { //final = variavel imutavel (tipo let)
 		StringBuilder sb = new StringBuilder();
 
 		if (data.getHead() == null) {
@@ -137,9 +139,6 @@ public class Operation {
 			node = node.getProximo();
 			qtdAux++;
 		}
-		//sb.append("head");
-		
 		return sb.toString();
 	}
-
 }
