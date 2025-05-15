@@ -56,28 +56,27 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> Lista filtrada (somente notas válidas) >>>>>>>>>>");
 		System.out.println(filteredGradedList);
 		System.out.println("<<<<<<<<<< Lista filtrada (somente notas válidas) <<<<<<<<<<\n");
-		/*
+		
 		DLinkedList filteredNonGradedList = Operation.filterRemoveGraded(fixedList);
 		System.out.println(">>>>>>>>>> Lista filtrada (somente 'ausência de nota') >>>>>>>>>>");
 		System.out.println(filteredNonGradedList);
 		System.out.println("<<<<<<<<<< Lista filtrada (somente 'ausência de nota') <<<<<<<<<<\n");
-		*/
+		
 		float average = Operation.reduce(filteredGradedList);
 		System.out.println(">>>>>>>>>> Média das notas válidas >>>>>>>>>>");
 		System.out.println(average);
 		System.out.println("<<<<<<<<<< Média das notas válidas <<<<<<<<<<\n");
-		/*
+		
 		DLinkedList aboveAverageList = Operation.filterRemoveBelowAverage(filteredGradedList, average);
 		System.out.println(">>>>>>>>>> Lista com notas acima da média >>>>>>>>>>");
 		System.out.println(aboveAverageList);
 		System.out.println("<<<<<<<<<< Lista com notas acima da média <<<<<<<<<<\n");
-		*/
-		/*
+		
 		String contents = Operation.mapToString(fixedList);
 		System.out.println(">>>>>>>>>> Lista mapeada para uma única string >>>>>>>>>>");
 		System.out.println(contents);
 		System.out.println("<<<<<<<<<< Lista mapeada para uma única string <<<<<<<<<<\n");
-		/*
+		
 		
 		// TODO: Salvar o conteúdo da String contents em um arquivo chamado "dados.csv".
 
@@ -118,7 +117,7 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 		testList.clear();
 		System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
-		*/
+
 	}
 
 }
