@@ -86,7 +86,19 @@ public class Operation {
 	 */
 	public static DLinkedList filterRemoveGraded(final DLinkedList data) {
 		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		DLinkedList notasInvalidas = new DLinkedList();
+		Node node = data.getHead();
+
+		if(node != null){
+			do{
+				if(node.getNota() == 99.9f){
+					notasInvalidas.append(node.getId(), node.getNome(), node.getNota());
+				}
+				node = node.getProximo();
+			} while(node != data.getHead());
+		}
+
+		return notasInvalidas;
 	}
 
 	/**
@@ -102,7 +114,18 @@ public class Operation {
 	 */
 	public static DLinkedList filterRemoveBelowAverage(final DLinkedList data, float average) {
 		// TODO: Implementar o método e remover o lançamento de exceção abaixo.
-		throw new UnsupportedOperationException("Método ainda não implementado.");
+		DLinkedList acimaMedia = new DLinkedList();
+		Node node = data.getHead();
+
+		if(node != null){
+			do{
+				if(node.getNota() > average){
+					acimaMedia.append(node.getId(), node.getNome(), node.getNota());
+				}
+				node = node.getProximo();
+			} while(node != data.getHead());
+		}
+		return acimaMedia;
 	}
 	
 	/**
