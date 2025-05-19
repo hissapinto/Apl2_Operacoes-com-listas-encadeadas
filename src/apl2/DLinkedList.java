@@ -102,33 +102,41 @@ public class DLinkedList {
 
 // Remove o nó que contém o <ID da pessoa> da lista e retorna-o ou retorna null se não achar.
 	public Node removeNode(String id) {
-		if(isEmpty()){
-			return null;
-		}
+	    if(isEmpty()){
+	        return null;
+	    }
 
-		Node pAux = head; //cria auxiliar apontando para head
-		while (pAux != null && !pAux.getId().equals(id)) { //laço enquanto nao chega ao fim e o id não é achado
-			pAux = pAux.getProximo();
-		}
+	    // Caso especial: se o nó a ser removido é o head
+	    if (head.getId().equals(id)) {
+	        return removeHead();
+	    }
+	    
+	    // Caso especial: se o nó a ser removido é o tail
+	    if (tail.getId().equals(id)) {
+	        return removeTail();
+	    }
 
-		if (pAux == null){ //Não achou o id na lista, retorna
-			return null;
-		}
-	
-		count--; //Se passou -> achou -> diminui o contador
+	    // Procurar o nó no meio da lista
+	    Node pAux = head.getProximo(); // Começamos do segundo nó
+	    while (pAux != head) { // Verificamos se completamos o ciclo
+	        if (pAux.getId().equals(id)) {
+	            // Remover o nó do meio da lista
+	            pAux.getAnterior().setProximo(pAux.getProximo());
+	            pAux.getProximo().setAnterior(pAux.getAnterior());
+	            
+	            // Desconectar o nó da lista
+	            pAux.setAnterior(null);
+	            pAux.setProximo(null);
+	            
+	            // Decrementar o contador
+	            count--;
+	            
+	            return pAux;
+	        }
+	        pAux = pAux.getProximo();
+	    }
 
-		if (pAux == head){ //se na head
-			return removeHead();
-		}
-
-		if (pAux == tail){ //se na tail
-			return removeTail();
-		}
-		
-		//Caso genérico: id no meio da lista
-		pAux.getAnterior().setProximo(pAux.getProximo()); //liga o nó anterior do aux ao proximo do aux
-		pAux.getProximo().setAnterior(pAux.getAnterior()); //liga o nó posterior do aux ao anterior do aux	
-		return pAux;
+	    return null; // Nó não encontrado
 	}
 
 	// Retorna head ou null se vazia
@@ -150,17 +158,23 @@ public class DLinkedList {
 
 // Retorna uma referência para o nó que contém o <ID da pessoa> ou null caso não ache na lista
 	public Node getNode(String id) {
-		if(isEmpty()){
-			return null;
-		}
+	    if(isEmpty()){
+	        return null;
+	    }
 
-		Node pAux = head;
-		while (pAux != null && !pAux.getId().equals(id)) {
-			pAux = pAux.getProximo();
-		}
+	    Node pAux = head;
+	    // Em uma lista circular, precisamos verificar se já voltamos ao início
+	    do {
+	        if(pAux.getId().equals(id)) {
+	            return pAux;
+	        }
+	        pAux = pAux.getProximo();
+	    } while (pAux != head); // Paramos quando voltamos ao início da lista
 
-		return pAux; //retorna o nó ou null caso percorra tudo
+	    return null; // Não encontrou o nó com o id especificado
 	}
+
+
 
 // Retorna a quantidade de nós da lista.
 	public int count() {

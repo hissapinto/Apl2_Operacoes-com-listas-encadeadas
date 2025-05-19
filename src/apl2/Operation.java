@@ -7,8 +7,6 @@
 
 package apl2;
 
-import java.io.EOFException;
-
 public class Operation {
 
 	/**

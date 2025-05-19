@@ -11,11 +11,11 @@
 import apl2.DLinkedList;
 import apl2.LinkedListOriginal;
 import apl2.Node;
-import apl2.NodeOriginal;
 import apl2.Operation;
-import java.io.File;  // Import the File class (txt)
-import java.io.FileNotFoundException;  // Import this class to handle errors
-import java.util.Scanner; // Import the Scanner class to read text files
+import apl2.Data;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainApl2 {
 	
@@ -24,24 +24,26 @@ public class MainApl2 {
 
 		// TODO: Carregar o conteúdo do arquivo "dados.txt" e adicionar cada linha como um nó na LinkedListOriginal list.
 		try {
-      		File dadosAnteriores = new File("dados.txt"); //inputa dados
-      		Scanner scanner = new Scanner(dadosAnteriores); 
-      		while (scanner.hasNextLine()) { //Enquanto não chega no final
-        		String dados = scanner.nextLine();
-				String listaDados[] = dados.split("#"); //divide em #
-
-				int id = Integer.parseInt(listaDados[0]); //id
-				int notaPt1 = Integer.parseInt(listaDados[2]); //parte 1 nota
-				int notaPt2 = Integer.parseInt(listaDados[3]); //parte 2 da nota
-			
-				list.append(id, listaDados[1], notaPt1, notaPt2); //cria nó na lista
-				list.toString(); //printa lista
-	  		}
-      	scanner.close();
-    	} catch (FileNotFoundException e) { //Se erro
-    		System.out.println("Deu algo errado na hora de importar.");
-    		e.printStackTrace();
-    	}
+      		String dados = Data.loadTextFileToString("dados.txt");
+      		
+      		String[] linhas = dados.split("\n");
+      		
+      		for(String linha: linhas) {
+      			String[] listaDados = linha.split("#");
+      			
+      			int id = Integer.parseInt(listaDados[0]);
+      			int notaInteiro = Integer.parseInt(listaDados[2]);
+      			int notaDecimal = Integer.parseInt(listaDados[3]);
+      			
+      			list.append(id, listaDados[1], notaInteiro, notaDecimal);
+      		}
+		} catch (FileNotFoundException e) {
+		    System.out.println("Arquivo não encontrado!");	
+		    e.printStackTrace();
+    	} catch(IOException e) { //Se erro
+    		System.out.println("Erro ao ler o arquivo.");
+    	    e.printStackTrace();
+    	} 
 		
 		System.out.println(">>>>>>>>>> Dados originais (sistema legado) >>>>>>>>>>");
 		System.out.println(list);
@@ -77,27 +79,40 @@ public class MainApl2 {
 		System.out.println(contents);
 		System.out.println("<<<<<<<<<< Lista mapeada para uma única string <<<<<<<<<<\n");
 		
-		
 		// TODO: Salvar o conteúdo da String contents em um arquivo chamado "dados.csv".
-
 		
-		Node test1 = fixedList.getNode("23.S1-999");
+		try {
+		    Data.saveStringToTextFile("dados.csv", contents);
+		} catch(FileNotFoundException e) {
+		    System.out.println("Arquivo não encontrado!");
+		    e.printStackTrace();
+		} catch(IOException e) {
+		    System.out.println("Erro ao salvar o arquivo.");
+		    e.printStackTrace();
+		} 
+		
+		Node test1 = fixedList.getNode("25.S3-999");
 		System.out.println(">>>>>>>>>> test1 >>>>>>>>>>\n" + test1 + "\n<<<<<<<<<< test1 <<<<<<<<<<\n");
 
-		Node test2 = fixedList.removeNode("23.S1-999");
+		Node test2 = fixedList.removeNode("25.S3-999");
 		System.out.println(">>>>>>>>>> test2 >>>>>>>>>>\n" + test2 + "\n<<<<<<<<<< test2 <<<<<<<<<<\n");
 
-		Node test3 = fixedList.getNode("23.S1-999");
+		Node test3 = fixedList.getNode("25.S3-999");
 		System.out.println(">>>>>>>>>> test3 >>>>>>>>>>\n" + test3 + "\n<<<<<<<<<< test3 <<<<<<<<<<\n");
 
 		aboveAverageList.clear();
 		System.out.println(">>>>>>>>>> aboveAverageList.clear() >>>>>>>>>>\n" + aboveAverageList + "\n<<<<<<<<<< aboveAverageList.clear() <<<<<<<<<<\n");
 
 		DLinkedList testList = new DLinkedList();
-		// TODO: Inserir um nó no início da lista testList com os dados ("ABC", "John Doe", 4.7f).
-		// TODO: Inserir um nó no final da lista testList com os dados ("XYZ", "Jane Doe", 9.9f).
-		// TODO: Inserir um nó no início da lista testList com os dados ("321", "Test", 2.3f).
-		// TODO: Inserir um nó no final da lista testList com os dados ("Nothing", "Yada yada yada", 99.9f).
+		// Inserir um nó no início da lista testList com os dados ("ABC", "John Doe", 4.7f).
+		testList.insert("ABC", "John Doe", 4.7f);
+		// Inserir um nó no final da lista testList com os dados ("XYZ", "Jane Doe", 9.9f).
+		testList.append("XYZ", "Jane Doe", 9.9f);
+		// Inserir um nó no início da lista testList com os dados ("321", "Test", 2.3f).
+		testList.insert("321", "Test", 2.3f);
+		// Inserir um nó no final da lista testList com os dados ("Nothing", "Yada yada yada", 99.9f).
+		testList.append("Nothing", "Yada yada yada", 99.9f);
+
 		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 		System.out.println("testList.getHead(): " + testList.getHead());
 		System.out.println("testList.getTail(): " + testList.getTail());
@@ -110,14 +125,19 @@ public class MainApl2 {
 		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 		System.out.println("testList.getHead(): " + testList.getHead());
 		System.out.println("testList.getTail(): " + testList.getTail() + '\n');
-		// TODO: Inserir um nó no início da lista testList com os dados ("qwerty", "QWERTY", 1.2f).
-		// TODO: Inserir um nó no final da lista testList com os dados ("WASD", "wasd", 3.4f).
-		// TODO: Inserir um nó no início da lista testList com os dados ("ijkl", "IJKL", 5.6f).
-		// TODO: Inserir um nó no final da lista testList com os dados ("1234", "Um Dois Tres Quatro", 7.8f).
+
+		// Inserir um nó no início da lista testList com os dados ("qwerty", "QWERTY", 1.2f).
+		testList.insert("qwerty", "QWERTY", 1.2f);
+		// Inserir um nó no final da lista testList com os dados ("WASD", "wasd", 3.4f).
+		testList.append("WASD", "wasd", 3.4f);
+		// Inserir um nó no início da lista testList com os dados ("ijkl", "IJKL", 5.6f).
+		testList.insert("ijkl", "IJKL", 5.6f);
+		// Inserir um nó no final da lista testList com os dados ("1234", "Um Dois Tres Quatro", 7.8f).
+		testList.append("1234", "Um Dois Tres Quatro", 7.8f);
+
 		System.out.println(">>>>>>>>>> testList >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList <<<<<<<<<<\n");
 		testList.clear();
 		System.out.println(">>>>>>>>>> testList.clear() >>>>>>>>>>\n" + testList  + "\n<<<<<<<<<< testList.clear() <<<<<<<<<<\n");
-
 	}
 
 }

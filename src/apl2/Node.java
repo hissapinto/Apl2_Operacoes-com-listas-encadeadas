@@ -88,7 +88,10 @@ public class Node {
 	}
 
 	@Override
-	public String toString(){
-		return "[(" + id + ";" + nome + ";" + nota + ") | anterior: " + anterior + " | próximo: " + proximo + "]\n";
+	public String toString() {
+	    String anteriorId = (anterior != null) ? String.valueOf(anterior.id) : "null";
+	    String proximoId = (proximo != null) ? String.valueOf(proximo.id) : "null";
+	    return "[(" + id + ";" + nome + ";" + nota + ") | anterior: " + anteriorId + " | próximo: " + proximoId + "]\n";
 	}
+
 }
