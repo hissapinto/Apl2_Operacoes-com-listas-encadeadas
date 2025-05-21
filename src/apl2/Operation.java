@@ -3,7 +3,7 @@
 //*************************** ATENÇÃO! *****************************
 // arquivo: src/apl2/Operation.java
 
-// TODO: Colocar a identificação dos(as) integrantes aqui.
+// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA: 10439611 | Kaique Paiva, RA: 10441787
 
 package apl2;
 
@@ -14,6 +14,8 @@ public class Operation {
 	 * populados com o conteúdo da base de dados original (conteúdo do arquivo dados.txt).</p>
 	 * <p>A operação {@code map()} deve mapear os dados originais para uma lista encadeada do tipo {@code DLinkedList} e
 	 * retornar a referência da {@code DLinkedList} que possui os dados mapeados para a nova estrutura usada pelo sistema de notas.</p>
+	 * 
+	 * CRIAR NOVA DLINK COM OS DADOS MODIFICADOS P/ NOVO SISTEMA
 	 * 
 	 * @param original Base de dados original carregada em uma {@code LinkedListOriginal}.
 	 * @return Uma nova {@code DLinkedList} que contém o mapeamento da coleção de dados {@code original} para a nova estrutura usada pelo sistema de notas. 

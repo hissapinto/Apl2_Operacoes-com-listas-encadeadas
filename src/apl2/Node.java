@@ -1,6 +1,6 @@
 // arquivo: src/apl2/Node.java
 
-// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA: XXXXXXXX | Kaique Paiva, RA: XXXXXXXX
+// Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA: 10439611 | Kaique Paiva, RA: 10441787
 
 package apl2;
 
