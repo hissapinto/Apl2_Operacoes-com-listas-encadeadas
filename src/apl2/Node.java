@@ -40,7 +40,7 @@ public class Node {
 		return id;
 	}
 
-	public void setId(String ano, String semestre) throws Exception{ //TODO: private pra pegar id e semestre
+	public void setId(String ano, String semestre, String idAnterior) throws Exception{
 		if (ano.length() == 1) {
 			this.id = ano + ".S";
 		}
@@ -48,7 +48,7 @@ public class Node {
 			throw new Exception("O ano deve conter apenas dois dígitos");
 		}
 		if (semestre.length() == 0) {
-			id += semestre + "-";
+			this.id += semestre + "-" + idAnterior;
 		}
 		else{
 			throw new Exception("O semestre deve conter apenas um dígito");
@@ -88,7 +88,10 @@ public class Node {
 	}
 
 	@Override
-	public String toString(){
-		return "[(" + id + ";" + nome + ";" + nota + ") | anterior: " + anterior + " | próximo: " + proximo + "]\n";
+	public String toString() {
+	    String anteriorId = (anterior != null) ? String.valueOf(anterior.id) : "null";
+	    String proximoId = (proximo != null) ? String.valueOf(proximo.id) : "null";
+	    return "[(" + id + ";" + nome + ";" + nota + ") | anterior: " + anteriorId + " | próximo: " + proximoId + "]\n";
 	}
+
 }
