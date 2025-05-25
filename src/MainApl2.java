@@ -1,12 +1,5 @@
-//*************************** ATENÇÃO! ****************************
-// O método main() deve ser alterado somente nos comentários T ODO.
-// Todas as outras instruções devem permanecer intactas e o código
-// deve funcionar conforme descrito no enunciado da atividade.
-//*************************** ATENÇÃO! ****************************
-// arquivo: src/MainApl2.java
 
 // Integrantes: Isabela Hissa, RA: 10441873 | Caio Ariel, RA: 10439611 | Kaique Paiva, RA: 10441787
-// T ODO: Listar todas as referências consultadas para solucionar a atividade.
 
 import apl2.DLinkedList;
 import apl2.LinkedListOriginal;
@@ -24,7 +17,6 @@ public class MainApl2 {
 		//Cria lista dados originais
 		LinkedListOriginal list = new LinkedListOriginal();
 		
-		// T ODO: Carregar o conteúdo do arquivo "dados.txt" e adicionar cada linha como
 		// um nó na LinkedListOriginal list.
 		try {
 			String dados = Data.loadTextFileToString("dados.txt");
