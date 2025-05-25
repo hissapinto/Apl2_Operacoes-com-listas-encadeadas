@@ -36,35 +36,35 @@ public class Operation {
 	}
 
 	public static DLinkedList filterRemoveNonGraded(final DLinkedList data) {
-		DLinkedList novaLista = new DLinkedList();
+		DLinkedList listaNotasValidas = new DLinkedList();
 		
 		Node node = data.getHead();
 
 		do {
 			if(node.getNota() != 99.9f) {
-				novaLista.append(node.getId(), node.getNome(), node.getNota());
+				listaNotasValidas.append(node.getId(), node.getNome(), node.getNota());
 			}
 			
 			node = node.getProximo();
 		} while(node != data.getHead());
 		
-		return novaLista;
+		return listaNotasValidas;
 	}
 
 	public static DLinkedList filterRemoveGraded(final DLinkedList data) {
-		DLinkedList notasInvalidas = new DLinkedList();
+		DLinkedList listaNotasInvalidas = new DLinkedList();
 		Node node = data.getHead();
 
 		if(node != null){
 			do{
 				if(node.getNota() == 99.9f){
-					notasInvalidas.append(node.getId(), node.getNome(), node.getNota());
+					listaNotasInvalidas.append(node.getId(), node.getNome(), node.getNota());
 				}
 				node = node.getProximo();
 			} while(node != data.getHead());
 		}
 
-		return notasInvalidas;
+		return listaNotasInvalidas;
 	}
 
 	public static DLinkedList filterRemoveBelowAverage(final DLinkedList data, float average) {

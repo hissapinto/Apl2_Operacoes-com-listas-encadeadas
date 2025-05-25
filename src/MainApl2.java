@@ -64,10 +64,10 @@ public class MainApl2 {
 			opcaoUsuario = scanner.nextInt();
 
 			switch (opcaoUsuario){
-				case 1:
+				case 1: //le dados originais e printa
 					System.out.println(list + "\n");
 					break;
-				case 2:
+				case 2: //Converte pra csv
 					try {
  						Data.saveStringToTextFile("dados.csv", contents);
 						System.out.println("Arquivo csv gerado com sucesso.\n");
@@ -79,21 +79,21 @@ public class MainApl2 {
   						e.printStackTrace();
   					}
 					break;
-				case 3:
+				case 3: //Lista de notas validas
 					System.out.println(filteredGradedList + "\n");
 					break;
-				case 4:
+				case 4: //Lista notas invalidas
 					DLinkedList filteredNonGradedList = Operation.filterRemoveGraded(fixedList);
 					System.out.println(filteredNonGradedList + "\n");
 					break;
-				case 5:
+				case 5: //Media de notas
 					System.out.println(average + "\n");
 					break;
-				case 6:
+				case 6: //Notas acima da media
 					DLinkedList aboveAverageList = Operation.filterRemoveBelowAverage(filteredGradedList, average);
 					System.out.println(aboveAverageList + "\n");
 					break;
-				case 7:
+				case 7: //Mapeia notas para string
 					System.out.println(contents + "\n");
 					break;
 				default:
@@ -105,7 +105,7 @@ public class MainApl2 {
 						break;
 					}
 			}
-		} while (opcaoUsuario != 8);
+		} while (opcaoUsuario != 8); //Sai do programa
 		scanner.close();
 	}
 }

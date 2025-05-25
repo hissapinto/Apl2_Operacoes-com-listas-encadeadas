@@ -5,6 +5,7 @@ package apl2;
 
 public class DLinkedList {
 	
+	//Atributos
 	private Node head;
 	private Node tail;
 	private int count;
@@ -18,7 +19,7 @@ public class DLinkedList {
 
 // Novo nó no início da lista
 	public void insert(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, null, head);
+		Node node = new Node(id, nome, nota, null, head); //No a ser inserido
 		if (isEmpty()){ //se vazia, o novo nó também é a cauda
 			head = tail = node;
 			head.setProximo(node); //no -> no
@@ -34,7 +35,7 @@ public class DLinkedList {
 
 // Novo nó no final da lista
 	public void append(String id, String nome, float nota) {
-		Node node = new Node(id, nome, nota, tail, head);
+		Node node = new Node(id, nome, nota, tail, head); //No a ser inserido
 		if(isEmpty()){
 			head = tail = node;
 			node.setProximo(node); //no -> no
